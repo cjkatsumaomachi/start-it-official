@@ -1,0 +1,292 @@
+@charset "UTF-8";
+/*========= ローディング画面のためのCSS ===============*/
+#splash {
+  position: fixed;
+  width: 100%;
+  height: calc(100% + 100px);
+  margin-top: -100px;
+  margin-bottom: -100px;
+  background: #333;
+  z-index: 9999999;
+  text-align: center;
+  color: #fff;
+}
+
+#splash-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100px;
+}
+
+/*========= 画面遷移のためのCSS ===============*/
+/*画面遷移アニメーション*/
+.splashbg {
+  display: none;
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear .splashbg {
+  display: block;
+  -webkit-animation-name: PageAnime;
+          animation-name: PageAnime;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  content: "";
+  position: fixed;
+  z-index: 999;
+  width: 50%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(-300%) skewX(-45deg);
+          transform: translateX(-300%) skewX(-45deg);
+  background-color: #333; /*伸びる背景色の設定*/
+}
+
+@-webkit-keyframes PageAnime {
+  0% {
+    -webkit-transform-origin: left;
+            transform-origin: left;
+    -webkit-transform: translateX(-300%) skewX(-45deg);
+            transform: translateX(-300%) skewX(-45deg);
+  }
+  100% {
+    -webkit-transform-origin: left;
+            transform-origin: left;
+    -webkit-transform: translateX(500%) skewX(-45deg);
+            transform: translateX(500%) skewX(-45deg);
+  }
+}
+
+@keyframes PageAnime {
+  0% {
+    -webkit-transform-origin: left;
+            transform-origin: left;
+    -webkit-transform: translateX(-300%) skewX(-45deg);
+            transform: translateX(-300%) skewX(-45deg);
+  }
+  100% {
+    -webkit-transform-origin: left;
+            transform-origin: left;
+    -webkit-transform: translateX(500%) skewX(-45deg);
+            transform: translateX(500%) skewX(-45deg);
+  }
+}
+/*画面遷移の後現れるコンテンツ設定*/
+#container {
+  opacity: 0; /*はじめは透過0に*/
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear #container {
+  -webkit-animation-name: PageAnimeAppear;
+          animation-name: PageAnimeAppear;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@-webkit-keyframes PageAnimeAppear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes PageAnimeAppear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* 一文字ずつ出現
+* -------------------------------------------- */
+.eachTextAnime span {
+  opacity: 0;
+}
+
+.eachTextAnime.appeartext span {
+  -webkit-animation: text_anime_on 1s ease-out forwards;
+          animation: text_anime_on 1s ease-out forwards;
+}
+
+@-webkit-keyframes text_anime_on {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes text_anime_on {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* ファーストビュー用
+* -------------------------------------------- */
+.anime-horizontal {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@-webkit-keyframes anime-horizontal {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes anime-horizontal {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+/* アニメーションの適用 */
+.anime-horizontal {
+  -webkit-animation: none;
+          animation: none; /* 初めはアニメーションをオフにする */
+}
+
+/* アニメーションを開始するクラスを追加することで、アニメーションをトリガーする */
+.anime-horizontal.active {
+  -webkit-animation: anime-horizontal 0.5s linear 1;
+          animation: anime-horizontal 0.5s linear 1; /* アニメーションのプロパティを設定 */
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s; /* 遅延時間を追加 */
+}
+
+.anime-horizontal2 {
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: anime-horizontal 1s linear 1;
+          animation: anime-horizontal 1s linear 1;
+  -webkit-animation-delay: 7s;
+          animation-delay: 7s;
+}
+
+@keyframes anime-horizontal {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.anime-fade-in {
+  opacity: 0;
+  -webkit-animation-name: anime-fade-in;
+          animation-name: anime-fade-in;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+}
+
+@-webkit-keyframes anime-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes anime-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.anime-fade-in2 {
+  opacity: 0;
+  -webkit-animation-name: anime-fade-in2;
+          animation-name: anime-fade-in2;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+@-webkit-keyframes anime-fade-in2 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes anime-fade-in2 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.anime-fade-in3 {
+  opacity: 0;
+  -webkit-animation-name: anime-fade-in3;
+          animation-name: anime-fade-in3;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 6s;
+          animation-delay: 6s;
+}
+
+@-webkit-keyframes anime-fade-in3 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes anime-fade-in3 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
